@@ -1,0 +1,16 @@
+[features]
+seeds = false
+[programs.localnet]
+myepicproject = "Ea3GEvjo4LWKMRoaT8Vq1moSMXXc59ZLGRwMW9oqCqpU"
+[programs.devnet]
+myepicproject = "Ea3GEvjo4LWKMRoaT8Vq1moSMXXc59ZLGRwMW9oqCqpU"
+
+[registry]
+url = "https://anchor.projectserum.com"
+
+[provider]
+cluster = "devnet"
+wallet = "/home/jaylee/.config/solana/id.json"
+
+[scripts]
+test = "node tests/myepicproject.js" 
