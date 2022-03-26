@@ -18,15 +18,25 @@ pub mod myepicproject {
     let base_account = &mut ctx.accounts.base_account;
     let user = &mut ctx.accounts.user;
 
-	// Build the struct.
+	  // Build the struct.
     let item = ItemStruct {
       gif_link: gif_link.to_string(),
       user_address: *user.to_account_info().key,
     };
 		
-	// Add it to the gif_list vector.
+	  // Add it to the gif_list vector.
     base_account.gif_list.push(item);
     base_account.total_gifs += 1;
+    Ok(())
+  }
+
+
+  pub fn delete_gif(ctx: Context<DeleteGif>, index: u8) -> ProgramResult {
+    let base_account = &mut ctx.accounts.base_account;
+		
+    base_account.gif_list.remove(index.into());
+
+    base_account.total_gifs -= 1;
     Ok(())
   }
 }
@@ -43,6 +53,14 @@ pub struct StartStuffOff<'info> {
 
 #[derive(Accounts)]
 pub struct AddGif<'info> {
+  #[account(mut)]
+  pub base_account: Account<'info, BaseAccount>,
+  #[account(mut)]
+  pub user: Signer<'info>,
+}
+
+#[derive(Accounts)]
+pub struct DeleteGif<'info> {
   #[account(mut)]
   pub base_account: Account<'info, BaseAccount>,
   #[account(mut)]

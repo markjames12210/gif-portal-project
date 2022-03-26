@@ -23,18 +23,32 @@ const main = async() => {
   console.log('👀 GIF Count', account.totalGifs.toString())
 
   // You'll need to now pass a GIF link to the function! You'll also need to pass in the user submitting the GIF!
-  await program.rpc.addGif("insert_a_giphy_link_here", {
+  await program.rpc.addGif("insert_a_giphy_link_here1", {
     accounts: {
       baseAccount: baseAccount.publicKey,
       user: provider.wallet.publicKey,
     },
   });
   
-  // Call the account.
-  account = await program.account.baseAccount.fetch(baseAccount.publicKey);
-  console.log('👀 GIF Count', account.totalGifs.toString())
+  // You'll need to now pass a GIF link to the function! You'll also need to pass in the user submitting the GIF!
+  await program.rpc.addGif("insert_a_giphy_link_here2", {
+    accounts: {
+      baseAccount: baseAccount.publicKey,
+      user: provider.wallet.publicKey,
+    },
+  });
 
   // Access gif_list on the account!
+  
+  await program.rpc.deleteGif(1, {
+    accounts: {
+      baseAccount: baseAccount.publicKey,
+      user: provider.wallet.publicKey,
+    },
+  });
+  
+  account = await  program.account.baseAccount.fetch(baseAccount.publicKey);
+  console.log("Current GIF Count = ", account.totalGifs.toString())
   console.log('👀 GIF List', account.gifList)
 }
 

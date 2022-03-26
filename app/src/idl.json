@@ -43,6 +43,27 @@
           "type": "string"
         }
       ]
+    },
+    {
+      "name": "deleteGif",
+      "accounts": [
+        {
+          "name": "baseAccount",
+          "isMut": true,
+          "isSigner": false
+        },
+        {
+          "name": "user",
+          "isMut": true,
+          "isSigner": true
+        }
+      ],
+      "args": [
+        {
+          "name": "index",
+          "type": "u8"
+        }
+      ]
     }
   ],
   "accounts": [
